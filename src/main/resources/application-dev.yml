@@ -1,0 +1,20 @@
+
+
+myapp:
+  scheduled:
+    cron: "0/1 * * * * *"
+  last:
+    hour: 23
+
+source:
+  db:
+    url: jdbc:mysql://localhost:3306/danger_house_db?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+
+
+target:
+  db:
+    url: jdbc:mysql://localhost:3306/house-target-use?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root

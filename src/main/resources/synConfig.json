@@ -1,0 +1,107 @@
+[
+  {
+    "limit": 100,
+    "selectFields": "    `id` ,\n`pc_house_id` ,\n`building_name` ,\n`house_address` ,\n`householder_name` ,\n`householder_card_id` ,\n`householder_phone` ,\n`structure_type_name` ,\n`jd_result` ,\n`deal_result` ,\n`house_property`,\n `update_time`",
+    "tableIdName": "id",
+    "tableIdType": "STRING",
+    "tableName": "house_archives",
+    "targetTableIdName": "id",
+    "targetTableIdType": "STRING",
+    "targetTableName": "biz_1000_house_archives"
+  },
+  {
+    "limit": 100,
+    "selectFields": " `HMDH` as `id`,\n`qybh`,\n`qymc`,\n`ksrq`,\n`jsrq`,\n`cflx`,\n`memo` ",
+    "selectTableIdRealName": "HMDH",
+    "tableIdName": "id",
+    "tableIdType": "NUM",
+    "tableName": "i_m_jghmd",
+    "targetTableIdName": "id",
+    "targetTableIdType": "NUM",
+    "targetTableName": "biz_1000_i_m_jghmd"
+  },
+  {
+    "limit": 100,
+    "selectFields": "`qybh`,\n`qymc`,\n`ZZJGDM` as `ZZJFDM`, -- 需要将biz_1000_i_m_qy1表 ZZJFDM 改成 ZZJGDM\n`lxsj`,\n`qyfr`",
+    "tableIdName": "qybh",
+    "tableIdType": "STRING",
+    "tableName": "i_m_qy",
+    "targetTableIdName": "qybh",
+    "targetTableIdType": "STRING",
+    "targetTableName": "biz_1000_i_m_qy1"
+  },
+  {
+    "limit": 100,
+    "selectFields": "`recid`,\n`sbbh`,\n`sbmc`,\n`sbxh`,\n`sccj`,\n`bfnx`,\n`jdzg`",
+    "tableIdName": "recid",
+    "tableIdType": "NUM",
+    "tableName": "i_m_sb",
+    "targetTableIdName": "recid",
+    "targetTableIdType": "NUM",
+    "targetTableName": "biz_1000_i_m_sb"
+  },
+  {
+    "limit": 100,
+    "selectFields": "`recid`,\n`ytdwbh`,\n`ytdwmc`,\n`syxmmc`,\n`gcdz`,\n`gcmc`,\n`jcjgms`",
+    "tableIdName": "recid",
+    "tableIdType": "STRING",
+    "tableName": "m_by",
+    "targetTableIdName": "recid",
+    "targetTableIdType": "STRING",
+    "targetTableName": "biz_1000_m_by"
+  },
+  {
+    "limit": 100,
+    "selectFields": "`recid`,\n`test_name`,\n`test_time`,\n`create_user_name`",
+    "tableIdName": "recid",
+    "tableIdType": "STRING",
+    "tableName": "m_random_spot_test",
+    "targetTableIdName": "recid",
+    "targetTableIdType": "STRING",
+    "targetTableName": "biz_1000_m_random_spot_test"
+  },
+  {
+    "limit": 100,
+    "selectFields": " CJSJWYH,WTDBH,SYR,SYRXM,KSSJ",
+    "tableKeyName": "CJSJWYH",
+    "tableKeyType": "STRING",
+    "tableName": "UP_CJJL",
+    "tableSubKeyName": "WTDBH",
+    "tableSubKeyType": "STRING",
+    "targetTableIdName": "CJSJWYH",
+    "targetTableIdType": "STRING",
+    "targetTableName": "biz_1000_up_cjjl"
+  },
+  {
+    "limit": 100,
+    "selectFields": " `qymc`,\n`ryxm`,\n`sfzhmtm`,\n`sjhmtm`,\n`zh`,\n`rybh`",
+    "tableKeyName": "rybh",
+    "tableKeyType": "STRING",
+    "tableName": "view_i_m_ry",
+    "tableSubKeyName": "qybh",
+    "tableSubKeyType": "STRING",
+    "targetTableIdName": "rybh",
+    "targetTableIdType": "STRING",
+    "targetTableName": "biz_1000_view_i_m_ry"
+  },
+  {
+    "limit": 100,
+    "selectFields": "`ryxm`,\n`sfzhm`,\n`sjhm`,\n`xb`,\n`zh`,\n`mz`,\n`rybh`",
+    "tableIdName": "rybh",
+    "tableIdType": "STRING",
+    "tableName": "I_M_RY",
+    "targetTableIdName": "rybh",
+    "targetTableIdType": "STRING",
+    "targetTableName": "biz_1000_view_i_m_ry1"
+  },
+  {
+    "limit": 100,
+    "selectFields": "`recid`,\n`qybh`,\n`lxmc`,\n`zzx`,\n`zzdjmc`,\n`zznrbh`,\n`zzmc`,\n`fzjg`,\n`yxqz`",
+    "tableIdName": "recid",
+    "tableIdType": "NUM",
+    "tableName": "view_i_s_qy_qyzz",
+    "targetTableIdName": "recid",
+    "targetTableIdType": "NUM",
+    "targetTableName": "biz_1000_view_i_s_qy_qyzz"
+  }
+]

@@ -1,0 +1,48 @@
+
+
+#myapp:
+#  scheduled:
+#    cron: "0 0 0 * * *"
+#  "0/1 * * * * *"
+
+server:
+  port: 15311
+
+
+myapp:
+  scheduled:
+    cron: "0 0 0 * * *"
+  last:
+    hour: 4
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    primary:
+      url: ${source.db.url}
+      username: ${source.db.username}
+      password: ${source.db.password}
+      driver-class-name: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      initial-size: 3
+      max-active: 5
+      min-idle: 3
+      max-wait: 60000
+    secondary:
+      url: ${target.db.url}
+      username: ${target.db.username}
+      password: ${target.db.password}
+      driver-class-name: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      initial-size: 3
+      max-active: 5
+      min-idle: 3
+      max-wait: 60000
+  task:
+    scheduling:
+      pool:
+        size: 10
+
+
+

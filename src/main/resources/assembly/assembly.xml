@@ -1,0 +1,34 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+  <id>bin</id>
+  <baseDirectory>datasync</baseDirectory>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>true</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <directory>${project.build.directory}</directory>
+      <includes>
+        <include>${project.build.finalName}.jar</include>
+      </includes>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>src/main/resources/scripts</directory> <!-- 你的脚本所在目录 -->
+      <includes>
+        <include>**/*</include>
+      </includes>
+      <outputDirectory>/scripts</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>src/main/resources</directory> <!-- 你的脚本所在目录 -->
+      <includes>
+        <include>application-*.yml</include>
+        <include>synConfig.json</include>
+      </includes>
+      <outputDirectory>/config</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>
