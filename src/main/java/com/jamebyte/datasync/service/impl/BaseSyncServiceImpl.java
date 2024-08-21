@@ -97,7 +97,7 @@ public abstract class BaseSyncServiceImpl implements SyncAction {
         } catch (Exception e) {
           log.warn("sync error,lastKey:{},synConfig:{}", lastKey, syncConfig, e);
           if (i == RETRY - 1) {
-            log.error("重试{}次还是失败，放弃同步,synConfig:{}", RETRY, syncConfig);
+            log.error("重试{}次还是失败，放弃同步,synConfig:{}", RETRY, syncConfig,e);
             return;
           }
         }

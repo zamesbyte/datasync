@@ -46,6 +46,11 @@ public class IdSyncServiceImpl extends BaseSyncServiceImpl {
         where = tableIdName + ">" + "'" +startKey+"'";
       }
     }
+
+    if (StringUtils.hasText(syncConfig.getWhereClause())){
+      where = where +  " and "+ syncConfig.getWhereClause() + " ";
+    }
+
     String orders = syncConfig.getTableIdName() + " asc ";
     int limit = syncConfig.getLimit();
     return String.format(startSelectSql, selectFields, tableName, where, orders,
@@ -58,7 +63,17 @@ public class IdSyncServiceImpl extends BaseSyncServiceImpl {
     if (CollectionUtils.isEmpty(dataList)) {
       return null;
     }
-    return dataList.get(dataList.size() - 1).get(syncConfig.getTargetTableIdName());
+    Map<String, Object> map = dataList.get(dataList.size() - 1);
+    if (map.containsKey(syncConfig.getTargetTableIdName())){
+      return map.get(syncConfig.getTargetTableIdName());
+    }
+    if (map.containsKey(syncConfig.getTargetTableIdName().toUpperCase())){
+      return map.get(syncConfig.getTargetTableIdName().toUpperCase());
+    }
+    if (map.containsKey(syncConfig.getTargetTableIdName().toLowerCase())){
+      return map.get(syncConfig.getTargetTableIdName().toLowerCase());
+    }
+    return null;
   }
 
 

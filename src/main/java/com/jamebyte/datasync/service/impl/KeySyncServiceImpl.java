@@ -73,6 +73,11 @@ public class KeySyncServiceImpl extends BaseSyncServiceImpl {
         where = syncConfig.getTableKeyName() + ">" + "'" + startKey + "'";
       }
     }
+
+    if (StringUtils.hasText(syncConfig.getWhereClause())){
+      where =  where +  " and "+ syncConfig.getWhereClause() + " ";
+    }
+
     String orders =
         syncConfig.getTableKeyName() + " asc , " + syncConfig.getTableSubKeyName() + " asc ";
     int limit = syncConfig.getLimit();
@@ -87,14 +92,26 @@ public class KeySyncServiceImpl extends BaseSyncServiceImpl {
       return null;
     }
     Map<String, Object> map = dataList.get(dataList.size() - 1);
-
-    if(map.get(syncConfig.getTableKeyName())==null){
-      return null;
-    }
     StartKey startKey = new StartKey();
-    startKey.setValue(map.get(syncConfig.getTableKeyName()));
-    startKey.setSubValue(map.get(syncConfig.getTableSubKeyName()));
-    return startKey;
+
+    if (map.containsKey(syncConfig.getTableKeyName())){
+      startKey.setValue(map.get(syncConfig.getTableKeyName()));
+      startKey.setSubValue(map.get(syncConfig.getTableSubKeyName()));
+      return startKey;
+    }
+    if (map.containsKey(syncConfig.getTableKeyName().toUpperCase())){
+      startKey.setValue(map.get(syncConfig.getTableKeyName().toUpperCase()));
+      startKey.setSubValue(map.get(syncConfig.getTableSubKeyName().toUpperCase()));
+      return startKey;
+    }
+    if (map.containsKey(syncConfig.getTableKeyName().toLowerCase())){
+      startKey.setValue(map.get(syncConfig.getTableKeyName().toLowerCase()));
+      startKey.setSubValue(map.get(syncConfig.getTableSubKeyName().toLowerCase()));
+      return startKey;
+    }
+
+    log.info("not get startKey:dataList:{},table:{}",dataList,syncConfig.getTableName());
+    return null;
   }
 
   /**

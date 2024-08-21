@@ -17,7 +17,7 @@ JAVA_MEM_OPTS=" ${JAVA_HEAP_OPTS}
 JAVA_DUMP_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/logs/dump"
 
 
-nohup java ${JAVA_MEM_OPTS}  ${JAVA_DUMP_OPTS}  ${JAVA_OPTS} -jar ../datasync.jar --syn.config.file=/data/bd/synConfig.json --spring.config.additional-location=../config/application-prod.yml --spring.profiles.active=prod 2>&1 > stdout.log &
+nohup java ${JAVA_MEM_OPTS}  ${JAVA_DUMP_OPTS}  ${JAVA_OPTS} -jar ../datasync.jar --syn.config.file=../config/synConfig.json --spring.config.additional-location=../config/application-prod.yml --spring.profiles.active=prod 2>&1 > stdout.log &
 
 
 #--spring.config.location=application-test.yml

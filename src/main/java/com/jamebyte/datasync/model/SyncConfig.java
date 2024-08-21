@@ -47,6 +47,7 @@ public class SyncConfig {
   private String targetTableName;
 
 
+  private String whereClause;
 
   private int limit = 100;
 
@@ -282,11 +283,83 @@ public class SyncConfig {
     syncConfig.setTargetTableName("biz_1000_view_i_s_qy_qyzz");
     list.add(syncConfig);
 
+    syncConfig = new SyncConfig();
+    syncConfig.setTableName("m_by");
+    selectFields = "RECID,\n"
+        + "BGBH,\n"
+        + "GCMC,\n"
+        + "GCDZ,\n"
+        + "SYDWMC,\n"
+        + "JCJGMS,\n"
+        + "(SELECT  scsj FROM UP_BGJL  where WTDBH=m_by.RECID order by scsj desc limit 1) as sysj,\n"
+        + "BUILDTYPE,\n"
+        + "PCHOUSEID";
+//    synConfig.setTableName("house_archives");
+    syncConfig.setSelectFields(selectFields);
+    syncConfig.setTableIdName("RECID");
+    syncConfig.setTableIdType(TableIdType.STRING);
+//    syncConfig.setTableKeyName("CJSJWYH");
+//    syncConfig.setTableKeyType(TableIdType.STRING);
+//    syncConfig.setTableSubKeyName("WTDBH");
+//    syncConfig.setTableSubKeyType(TableIdType.STRING);
+    syncConfig.setTargetTableIdName("RECID");
+    syncConfig.setTargetTableIdType(TableIdType.STRING);
+    syncConfig.setTargetTableName("biz_1000_up_bgjl");
+    syncConfig.setWhereClause("( (BGBH IS NOT NULL and BGBH<>'') and ZT NOT LIKE '_1________' ) ");
+    list.add(syncConfig);
 
+    syncConfig = new SyncConfig();
+    syncConfig.setTableName("m_by");
+    selectFields = "RECID,\n"
+        + "BGBH,\n"
+        + "JCJGMS,\n"
+        + "SYDWMC,\n"
+        + "SYXMMC,\n"
+        + "GCMC,\n"
+        + "GCDZ,\n"
+        + "BUILDTYPE,\n"
+        + "(select  CLYJ from M_BY_FZ as CLYJ where recid = m_by.recid ) as CLYJ,\n"
+        + "QTCLYJ";
+//    synConfig.setTableName("house_archives");
+    syncConfig.setSelectFields(selectFields);
+    syncConfig.setTableIdName("RECID");
+    syncConfig.setTableIdType(TableIdType.STRING);
+//    syncConfig.setTableKeyName("CJSJWYH");
+//    syncConfig.setTableKeyType(TableIdType.STRING);
+//    syncConfig.setTableSubKeyName("WTDBH");
+//    syncConfig.setTableSubKeyType(TableIdType.STRING);
+    syncConfig.setTargetTableIdName("RECID");
+    syncConfig.setTargetTableIdType(TableIdType.STRING);
+    syncConfig.setTargetTableName("biz_1000_house_rectification");
+    syncConfig.setWhereClause("(zgstatus in (0,2)  or (zgstatus>=1 and zgstatus<>2) ) and jcjg in (3,4,103,104) and bgbh<>'' ");
+    list.add(syncConfig);
+
+
+    syncConfig = new SyncConfig();
+    syncConfig.setTableName("jd_report_yy");
+    selectFields = "RECID,\n"
+        + "QYBH,\n"
+        + " (select BGBH from m_by_fz where   m_by_fz.recid = recid limit 1) as BGBH,\n"
+        + "CHECK_MAN,\n"
+        + "ZT,\n"
+        + " (select YTDWMC from m_by where wtd_id=recid limit 1) as YTDWMC,\n"
+        + "(select GCMC from m_by where wtd_id=recid limit 1) as GCMC,\n"
+        + "(select CLYJ from m_by_fz where   m_by_fz.recid = recid limit 1) as CLYJ,\n"
+        + "(select QTCLYJ from m_by where wtd_id=recid limit 1) as QTCLYJ";
+//    synConfig.setTableName("house_archives");
+    syncConfig.setSelectFields(selectFields);
+    syncConfig.setTableIdName("RECID");
+    syncConfig.setTableIdType(TableIdType.NUM);
+//    syncConfig.setTableKeyName("CJSJWYH");
+//    syncConfig.setTableKeyType(TableIdType.STRING);
+//    syncConfig.setTableSubKeyName("WTDBH");
+//    syncConfig.setTableSubKeyType(TableIdType.STRING);
+    syncConfig.setTargetTableIdName("RECID");
+    syncConfig.setTargetTableIdType(TableIdType.NUM);
+    syncConfig.setTargetTableName("biz_1000_jd_report_yy");
+    list.add(syncConfig);
 
     System.out.println(JSON.toJSONString(list));
-
-
   }
 
 }

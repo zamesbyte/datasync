@@ -103,5 +103,37 @@
     "targetTableIdName": "recid",
     "targetTableIdType": "NUM",
     "targetTableName": "biz_1000_view_i_s_qy_qyzz"
+  },
+  {
+    "limit": 100,
+    "selectFields": "RECID,\nBGBH,\nGCMC,\nGCDZ,\nSYDWMC,\nJCJGMS,\n(SELECT  scsj FROM UP_BGJL  where WTDBH=m_by.RECID order by scsj desc limit 1) as sysj,\nBUILDTYPE,\nPCHOUSEID",
+    "tableIdName": "RECID",
+    "tableIdType": "STRING",
+    "tableName": "m_by",
+    "targetTableIdName": "RECID",
+    "targetTableIdType": "STRING",
+    "targetTableName": "biz_1000_up_bgjl",
+    "whereClause": "( (BGBH IS NOT NULL and BGBH<>'') and ZT NOT LIKE '_1________' ) "
+  },
+  {
+    "limit": 100,
+    "selectFields": "RECID,\nBGBH,\nJCJGMS,\nSYDWMC,\nSYXMMC,\nGCMC,\nGCDZ,\nBUILDTYPE,\n(select  CLYJ from M_BY_FZ as CLYJ where recid = m_by.recid ) as CLYJ,\nQTCLYJ",
+    "tableIdName": "RECID",
+    "tableIdType": "STRING",
+    "tableName": "m_by",
+    "targetTableIdName": "RECID",
+    "targetTableIdType": "STRING",
+    "targetTableName": "biz_1000_house_rectification",
+    "whereClause": "(zgstatus in (0,2)  or (zgstatus>=1 and zgstatus<>2) ) and jcjg in (3,4,103,104) and bgbh<>'' "
+  },
+  {
+    "limit": 100,
+    "selectFields": "RECID,\nQYBH,\n (select BGBH from m_by_fz where   m_by_fz.recid = recid limit 1) as BGBH,\nCHECK_MAN,\nZT,\n (select YTDWMC from m_by where wtd_id=recid limit 1) as YTDWMC,\n(select GCMC from m_by where wtd_id=recid limit 1) as GCMC,\n(select CLYJ from m_by_fz where   m_by_fz.recid = recid limit 1) as CLYJ,\n(select QTCLYJ from m_by where wtd_id=recid limit 1) as QTCLYJ",
+    "tableIdName": "RECID",
+    "tableIdType": "NUM",
+    "tableName": "jd_report_yy",
+    "targetTableIdName": "RECID",
+    "targetTableIdType": "NUM",
+    "targetTableName": "biz_1000_jd_report_yy"
   }
 ]
